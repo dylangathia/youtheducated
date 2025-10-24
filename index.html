@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouthEducated - Enhanced Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            transition: var(--transition);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .nav-links li {
+            padding: 12px 20px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-links li:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links li.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-left: 4px solid white;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .language-toggle {
+            margin: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .language-toggle button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .language-toggle button.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .user-details h3 {
+            margin-bottom: 5px;
+        }
+
+        .user-details p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .search-bar input {
+            padding: 10px 15px 10px 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 30px;
+            width: 250px;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .notification-bell {
+            position: relative;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .notification-bell i {
+            font-size: 1.3rem;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .notification-bell:hover i {
+            color: var(--primary);
+        }
+
+        .notification-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--warning);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-logout {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-logout:hover {
+            background: var(--secondary);
+        }
+
+        .offline-indicator {
+            display: flex;
+            align-items: center;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            border-left: 4px solid #ffc107;
+        }
+
+        .offline-indicator i {
+            margin-right: 8px;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .card-icon.blue {
+            background-color: var(--primary);
+        }
+
+        .card-icon.green {
+            background-color: #4caf50;
+        }
+
+        .card-icon.orange {
+            background-color: #ff9800;
+        }
+
+        .card-icon.purple {
+            background-color: #9c27b0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .view-all {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+
+        .progress-text {
+            font-weight: 600;
+            min-width: 50px;
+        }
+
+        /* Charts Section - FIXED HEIGHT */
+        .charts-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            /* Add fixed height to chart cards */
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 180px !important; /* Force height with !important */
+            flex: 1;
+            min-height: 0; /* Important for flex children */
+        }
+
+        /* Fix for Chart.js canvas */
+        .chart-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Gamification Section */
+        .gamification-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .badge-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .badge-card:hover {
+            transform: scale(1.05);
+        }
+
+        .badge-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .badge-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .badge-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Mentor Actions */
+        .mentor-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .action-btn {
+            background: white;
+            border: none;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .action-btn i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* New Styles for Enhanced Pages */
+        .mentors-grid, .achievements-grid, .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .mentor-card, .achievement-card, .schedule-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .mentor-card:hover, .achievement-card:hover, .schedule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .mentor-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 0 auto 15px;
+        }
+
+        .mentor-info {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .mentor-specialty {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .mentor-rating {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        .mentor-actions-small {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .btn-small {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.8rem;
+        }
+
+        .btn-small:hover {
+            background: var(--secondary);
+        }
+
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .achievement-info {
+            text-align: center;
+        }
+
+        .achievement-progress {
+            margin-top: 10px;
+        }
+
+        .schedule-time {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .schedule-details {
+            margin-bottom: 10px;
+        }
+
+        .schedule-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .status-upcoming {
+            background-color: #e7f3ff;
+            color: var(--primary);
+        }
+
+        .status-completed {
+            background-color: #e7f6e7;
+            color: #4caf50;
+        }
+
+        .settings-section {
+            margin-bottom: 30px;
+        }
+
+        .settings-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .settings-option:last-child {
+            border-bottom: none;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+                overflow: visible;
+            }
+
+            .logo h1, .nav-links span, .language-toggle span {
+                display: none;
+            }
+
+            .nav-links li {
+                text-align: center;
+                padding: 15px 0;
+            }
+
+            .nav-links i {
+                margin-right: 0;
+                font-size: 1.4rem;
+            }
+
+            .main-content {
+                margin-left: 70px;
+            }
+
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-card {
+                height: 250px; /* Slightly smaller on tablet */
+            }
+
+            .search-bar input {
+                width: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-bar {
+                display: none;
+            }
+
+            .mentors-grid, .achievements-grid, .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-card {
+                height: 220px; /* Even smaller on mobile */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-actions {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .chart-card {
+                height: 200px; /* Smallest on very small screens */
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Accessibility Improvements */
+        button:focus, a:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .high-contrast {
+            --primary: #0056b3;
+            --secondary: #004494;
+            --light: #ffffff;
+            --dark: #000000;
+        }
+
+        /* Customization Panel */
+        .customization-panel {
+            position: fixed;
+            right: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: var(--transition);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .customization-panel.open {
+            right: 0;
+        }
+
+        .customization-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .customization-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .theme-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .theme-option.active {
+            border-color: var(--primary);
+        }
+
+        .theme-option.blue { background: linear-gradient(135deg, #4361ee, #3f37c9); }
+        .theme-option.green { background: linear-gradient(135deg, #4caf50, #388e3c); }
+        .theme-option.purple { background: linear-gradient(135deg, #9c27b0, #7b1fa2); }
+        .theme-option.dark { background: linear-gradient(135deg, #343a40, #212529); }
+        .theme-option.orange { background: linear-gradient(135deg, #ff9800, #f57c00); }
+        .theme-option.teal { background: linear-gradient(135deg, #009688, #00796b); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-graduation-cap" style="font-size: 2rem;"></i>
+                <h1>YouthEducated</h1>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-page="dashboard"><a href="#"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                <li data-page="courses"><a href="#"><i class="fas fa-book"></i> <span>Courses</span></a></li>
+                <li data-page="progress"><a href="#"><i class="fas fa-chart-line"></i> <span>Progress</span></a></li>
+                <li data-page="achievements"><a href="#"><i class="fas fa-trophy"></i> <span>Achievements</span></a></li>
+                <li data-page="mentors"><a href="#"><i class="fas fa-users"></i> <span>Mentors</span></a></li>
+                <li data-page="schedule"><a href="#"><i class="fas fa-calendar-alt"></i> <span>Schedule</span></a></li>
+                <li data-page="settings"><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            </ul>
+            
+            <div class="language-toggle">
+                <span>Language:</span>
+                <div>
+                    <button class="active">EN</button>
+                    <button>FR</button>
+                    <button>SW</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Page (Default) -->
+            <div id="dashboard" class="page-content active">
+                <!-- Header -->
+                <div class="header">
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-details">
+                            <h3>John Student</h3>
+                            <p>Learner</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search courses, mentors...">
+                        </div>
+                        <div class="notification-bell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                        </div>
+                        <button class="btn-logout">Logout</button>
+                    </div>
+                </div>
+
+                <!-- Offline Indicator -->
+                <div class="offline-indicator">
+                    <i class="fas fa-wifi"></i>
+                    <span>You're currently in offline mode. Some features may be limited.</span>
+                </div>
+
+                <!-- Dashboard Cards -->
+                <div class="dashboard-cards">
+                    <div class="card fade-in">
+                        <div class="card-header">
+                            <h3 class="card-title">Learning Progress</h3>
+                            <div class="card-icon blue">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="progress-container">
+                            <span>Mathematics</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <span class="progress-text">75%</span>
+                        </div>
+                        <div class="progress-container">
+                            <span>Science</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                            <span class="progress-text">60%</span>
+                        </div>
+                        <div class="progress-container">
+                            <span>Language</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <span class="progress-text">45%</span>
+                        </div>
+                    </div>
+
+                    <div class="card fade-in">
+                        <div class="card-header">
+                            <h3 class="card-title">AI Recommendations</h3>
+                            <div class="card-icon green">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                        </div>
+                        <p>Based on your progress, we recommend:</p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li>Advanced Algebra Practice</li>
+                            <li>Science Lab Simulation</li>
+                            <li>French Vocabulary Builder</li>
+                        </ul>
+                        <button style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px;">View Recommendations</button>
+                    </div>
+
+                    <div class="card fade-in">
+                        <div class="card-header">
+                            <h3 class="card-title">Upcoming Sessions</h3>
+                            <div class="card-icon orange">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <div style="margin: 10px 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Math Tutoring</span>
+                                <span>Tomorrow, 3:00 PM</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Science Lab</span>
+                                <span>Friday, 10:00 AM</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Language Practice</span>
+                                <span>Monday, 2:00 PM</span>
+                            </div>
+                        </div>
+                        <button style="background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px;">View All</button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-item fade-in">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Courses Completed</div>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <div class="stat-value">28</div>
+                        <div class="stat-label">Learning Hours</div>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Badges Earned</div>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="progress-section fade-in">
+                    <div class="section-header">
+                        <h2 class="section-title">Your Learning Journey</h2>
+                        <a href="#" class="view-all">View Details</a>
+                    </div>
+                    <canvas id="progressChart" class="chart-container"></canvas>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-container">
+                    <div class="chart-card fade-in">
+                        <div class="section-header">
+                            <h2 class="section-title">Performance Analytics</h2>
+                        </div>
+                        <canvas id="performanceChart" class="chart-container"></canvas>
+                    </div>
+                    <div class="chart-card fade-in">
+                        <div class="section-header">
+                            <h2 class="section-title">Time Distribution</h2>
+                        </div>
+                        <canvas id="timeChart" class="chart-container"></canvas>
+                    </div>
+                </div>
+
+                <!-- Gamification Section -->
+                <div class="progress-section fade-in">
+                    <div class="section-header">
+                        <h2 class="section-title">Your Achievements</h2>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="gamification-container">
+                        <div class="badge-card">
+                            <div class="badge-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <h3 class="badge-title">7-Day Streak</h3>
+                            <p class="badge-desc">Learned for 7 consecutive days</p>
+                        </div>
+                        <div class="badge-card">
+                            <div class="badge-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3 class="badge-title">Bookworm</h3>
+                            <p class="badge-desc">Completed 5 courses</p>
+                        </div>
+                        <div class="badge-card">
+                            <div class="badge-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="badge-title">Quick Learner</h3>
+                            <p class="badge-desc">Finished a course in record time</p>
+                        </div>
+                        <div class="badge-card">
+                            <div class="badge-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3 class="badge-title">Math Whiz</h3>
+                            <p class="badge-desc">Scored 95%+ in Math assessment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mentor Actions -->
+                <div class="progress-section fade-in">
+                    <div class="section-header">
+                        <h2 class="section-title">Quick Actions</h2>
+                    </div>
+                    <div class="mentor-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-comment"></i>
+                            <span>Message Mentor</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>Schedule Session</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Mark Complete</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-download"></i>
+                            <span>Download Resources</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other pages remain the same as before -->
+            <!-- Courses Page -->
+            <div id="courses" class="page-content">
+                <!-- ... courses page content ... -->
+            </div>
+
+            <!-- Progress Page -->
+            <div id="progress" class="page-content">
+                <!-- ... progress page content ... -->
+            </div>
+
+            <!-- Achievements Page -->
+            <div id="achievements" class="page-content">
+                <!-- ... achievements page content ... -->
+            </div>
+
+            <!-- Mentors Page -->
+            <div id="mentors" class="page-content">
+                <!-- ... mentors page content ... -->
+            </div>
+
+            <!-- Schedule Page -->
+            <div id="schedule" class="page-content">
+                <!-- ... schedule page content ... -->
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settings" class="page-content">
+                <!-- ... settings page content ... -->
+            </div>
+        </div>
+
+        <!-- Customization Panel -->
+        <div class="customization-panel">
+            <h3>Customize Dashboard</h3>
+            <div style="margin: 15px 0;">
+                <h4>Theme Color</h4>
+                <div class="theme-options">
+                    <div class="theme-option blue active"></div>
+                    <div class="theme-option green"></div>
+                    <div class="theme-option purple"></div>
+                    <div class="theme-option dark"></div>
+                    <div class="theme-option orange"></div>
+                    <div class="theme-option teal"></div>
+                </div>
+            </div>
+            <div style="margin: 15px 0;">
+                <h4>Layout</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label><input type="checkbox" checked> Show Progress Charts</label>
+                    <label><input type="checkbox" checked> Show Achievements</label>
+                    <label><input type="checkbox" checked> Show Quick Actions</label>
+                    <label><input type="checkbox"> High Contrast Mode</label>
+                </div>
+            </div>
+            <button style="background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 15px;">Save Preferences</button>
+        </div>
+
+        <div class="customization-toggle">
+            <i class="fas fa-palette"></i>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Charts with proper configuration
+        document.addEventListener('DOMContentLoaded', function() {
+            // Common chart options for consistent sizing
+            const commonChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false, // This is crucial for controlling size
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            };
+
+            // Progress Chart
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            const progressChart = new Chart(progressCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Mathematics',
+                        data: [65, 59, 70, 71, 76, 80],
+                        borderColor: '#4361ee',
+                        backgroundColor: 'rgba(67, 97, 238, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }, {
+                        label: 'Science',
+                        data: [55, 65, 60, 70, 75, 78],
+                        borderColor: '#4caf50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }, {
+                        label: 'Language',
+                        data: [40, 50, 45, 55, 60, 65],
+                        borderColor: '#ff9800',
+                        backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Performance Chart
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            const performanceChart = new Chart(performanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Math', 'Science', 'Language', 'History', 'Geography'],
+                    datasets: [{
+                        label: 'Test Scores',
+                        data: [85, 78, 65, 72, 80],
+                        backgroundColor: [
+                            'rgba(67, 97, 238, 0.7)',
+                            'rgba(76, 175, 80, 0.7)',
+                            'rgba(255, 152, 0, 0.7)',
+                            'rgba(156, 39, 176, 0.7)',
+                            'rgba(33, 150, 243, 0.7)'
+                        ],
+                        borderColor: [
+                            '#4361ee',
+                            '#4caf50',
+                            '#ff9800',
+                            '#9c27b0',
+                            '#2196f3'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Time Distribution Chart
+            const timeCtx = document.getElementById('timeChart').getContext('2d');
+            const timeChart = new Chart(timeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Mathematics', 'Science', 'Language', 'Other'],
+                    datasets: [{
+                        data: [40, 30, 20, 10],
+                        backgroundColor: [
+                            '#4361ee',
+                            '#4caf50',
+                            '#ff9800',
+                            '#6c757d'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Weekly Progress Chart
+            const weeklyProgressCtx = document.getElementById('weeklyProgressChart').getContext('2d');
+            const weeklyProgressChart = new Chart(weeklyProgressCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Hours Studied',
+                        data: [12, 15, 10, 18],
+                        backgroundColor: 'rgba(67, 97, 238, 0.7)',
+                        borderColor: '#4361ee',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Subject Comparison Chart
+            const subjectComparisonCtx = document.getElementById('subjectComparisonChart').getContext('2d');
+            const subjectComparisonChart = new Chart(subjectComparisonCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Math', 'Science', 'Language', 'History', 'Geography'],
+                    datasets: [{
+                        label: 'Current Performance',
+                        data: [85, 78, 65, 72, 80],
+                        backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                        borderColor: '#4361ee',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#4361ee'
+                    }, {
+                        label: 'Previous Month',
+                        data: [70, 65, 60, 68, 75],
+                        backgroundColor: 'rgba(255, 152, 0, 0.2)',
+                        borderColor: '#ff9800',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#ff9800'
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+
+            // Rest of the JavaScript remains the same...
+            // Customization Panel Toggle
+            const customizationToggle = document.querySelector('.customization-toggle');
+            const customizationPanel = document.querySelector('.customization-panel');
+            
+            customizationToggle.addEventListener('click', function() {
+                customizationPanel.classList.toggle('open');
+            });
+
+            // Theme Selection
+            const themeOptions = document.querySelectorAll('.theme-option');
+            themeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    themeOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const color = this.classList[1];
+                    document.documentElement.style.setProperty('--primary', getComputedStyle(this).backgroundImage.includes('blue') ? '#4361ee' : 
+                        getComputedStyle(this).backgroundImage.includes('green') ? '#4caf50' :
+                        getComputedStyle(this).backgroundImage.includes('purple') ? '#9c27b0' :
+                        getComputedStyle(this).backgroundImage.includes('dark') ? '#343a40' :
+                        getComputedStyle(this).backgroundImage.includes('orange') ? '#ff9800' : '#009688');
+                });
+            });
+
+            // Language Toggle
+            const langButtons = document.querySelectorAll('.language-toggle button');
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    alert('Language changed to ' + this.textContent);
+                });
+            });
+
+            // Navigation between pages
+            const navLinks = document.querySelectorAll('.nav-links li');
+            const pageContents = document.querySelectorAll('.page-content');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const pageId = this.getAttribute('data-page');
+                    
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    pageContents.forEach(page => page.classList.remove('active'));
+                    document.getElementById(pageId).classList.add('active');
+                });
+            });
+
+            // Simulate offline caching
+            setTimeout(() => {
+                document.querySelector('.offline-indicator').innerHTML = 
+                    '<i class="fas fa-cloud"></i> <span>Back online! All features are now available.</span>';
+                document.querySelector('.offline-indicator').style.backgroundColor = '#d1edff';
+                document.querySelector('.offline-indicator').style.color = '#004085';
+                document.querySelector('.offline-indicator').style.borderLeftColor = '#007bff';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

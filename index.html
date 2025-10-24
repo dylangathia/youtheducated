@@ -31,6 +31,7 @@
             background-color: #f5f7fb;
             color: var(--dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -129,6 +130,8 @@
             margin-left: 250px;
             padding: 20px;
             transition: var(--transition);
+            min-height: 100vh;
+            overflow-y: auto;
         }
 
         .header {
@@ -406,7 +409,7 @@
             min-width: 50px;
         }
 
-        /* Charts Section - FIXED HEIGHT */
+        /* Charts Section - COMPACT STYLING */
         .charts-container {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -419,17 +422,16 @@
             border-radius: 10px;
             box-shadow: var(--card-shadow);
             padding: 20px;
-            /* Add fixed height to chart cards */
-            height: 280px;
+            height: 240px; /* Reduced height */
             display: flex;
             flex-direction: column;
         }
 
         .chart-container {
             position: relative;
-            height: 180px !important; /* Force height with !important */
+            height: 160px !important; /* Reduced height */
             flex: 1;
-            min-height: 0; /* Important for flex children */
+            min-height: 0;
         }
 
         /* Fix for Chart.js canvas */
@@ -460,8 +462,8 @@
         }
 
         .badge-icon {
-            width: 70px;
-            height: 70px;
+            width: 60px; /* Smaller */
+            height: 60px; /* Smaller */
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             margin: 0 auto 15px;
@@ -469,23 +471,24 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.8rem;
+            font-size: 1.5rem; /* Smaller */
         }
 
         .badge-title {
             font-weight: 600;
             margin-bottom: 5px;
+            font-size: 1rem; /* Smaller */
         }
 
         .badge-desc {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Smaller */
         }
 
         /* Mentor Actions */
         .mentor-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Smaller */
             gap: 15px;
             margin-bottom: 30px;
         }
@@ -495,7 +498,7 @@
             border: none;
             border-radius: 10px;
             box-shadow: var(--card-shadow);
-            padding: 15px;
+            padding: 12px; /* Smaller */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -510,8 +513,12 @@
         }
 
         .action-btn i {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.3rem; /* Smaller */
+            margin-bottom: 8px; /* Smaller */
+        }
+
+        .action-btn span {
+            font-size: 0.9rem; /* Smaller */
         }
 
         /* Page Content */
@@ -524,14 +531,14 @@
         }
 
         /* New Styles for Enhanced Pages */
-        .mentors-grid, .achievements-grid, .schedule-grid {
+        .mentors-grid, .achievements-grid, .schedule-grid, .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Smaller */
             gap: 20px;
             margin-bottom: 30px;
         }
 
-        .mentor-card, .achievement-card, .schedule-card {
+        .mentor-card, .achievement-card, .schedule-card, .course-card {
             background: white;
             border-radius: 10px;
             box-shadow: var(--card-shadow);
@@ -539,14 +546,14 @@
             transition: var(--transition);
         }
 
-        .mentor-card:hover, .achievement-card:hover, .schedule-card:hover {
+        .mentor-card:hover, .achievement-card:hover, .schedule-card:hover, .course-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
 
         .mentor-avatar {
-            width: 70px;
-            height: 70px;
+            width: 60px; /* Smaller */
+            height: 60px; /* Smaller */
             border-radius: 50%;
             background-color: var(--primary);
             color: white;
@@ -554,7 +561,7 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.3rem; /* Smaller */
             margin: 0 auto 15px;
         }
 
@@ -565,13 +572,14 @@
 
         .mentor-specialty {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.9rem; /* Smaller */
             margin-bottom: 10px;
         }
 
         .mentor-rating {
             color: #ffc107;
             margin-bottom: 10px;
+            font-size: 0.9rem; /* Smaller */
         }
 
         .mentor-actions-small {
@@ -584,11 +592,11 @@
             background: var(--primary);
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 5px 10px; /* Smaller */
             border-radius: 5px;
             cursor: pointer;
             transition: var(--transition);
-            font-size: 0.8rem;
+            font-size: 0.8rem; /* Smaller */
         }
 
         .btn-small:hover {
@@ -596,8 +604,8 @@
         }
 
         .achievement-icon {
-            width: 60px;
-            height: 60px;
+            width: 50px; /* Smaller */
+            height: 50px; /* Smaller */
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             margin: 0 auto 15px;
@@ -605,7 +613,7 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.3rem; /* Smaller */
         }
 
         .achievement-info {
@@ -620,6 +628,7 @@
             font-weight: bold;
             margin-bottom: 5px;
             color: var(--primary);
+            font-size: 0.9rem; /* Smaller */
         }
 
         .schedule-details {
@@ -630,7 +639,7 @@
             display: inline-block;
             padding: 3px 8px;
             border-radius: 15px;
-            font-size: 0.8rem;
+            font-size: 0.8rem; /* Smaller */
             margin-top: 5px;
         }
 
@@ -644,15 +653,20 @@
             color: #4caf50;
         }
 
+        .status-in-progress {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
         .settings-section {
-            margin-bottom: 30px;
+            margin-bottom: 25px; /* Smaller */
         }
 
         .settings-option {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 12px 0; /* Smaller */
             border-bottom: 1px solid #e0e0e0;
         }
 
@@ -705,6 +719,18 @@
             transform: translateX(26px);
         }
 
+        .course-progress {
+            margin: 15px 0;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 992px) {
             .sidebar {
@@ -735,7 +761,7 @@
             }
 
             .chart-card {
-                height: 250px; /* Slightly smaller on tablet */
+                height: 220px; /* Slightly smaller on tablet */
             }
 
             .search-bar input {
@@ -756,12 +782,12 @@
                 display: none;
             }
 
-            .mentors-grid, .achievements-grid, .schedule-grid {
+            .mentors-grid, .achievements-grid, .schedule-grid, .courses-grid {
                 grid-template-columns: 1fr;
             }
 
             .chart-card {
-                height: 220px; /* Even smaller on mobile */
+                height: 200px; /* Even smaller on mobile */
             }
         }
 
@@ -782,7 +808,7 @@
             }
 
             .chart-card {
-                height: 200px; /* Smallest on very small screens */
+                height: 180px; /* Smallest on very small screens */
             }
         }
 
@@ -794,29 +820,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* Accessibility Improvements */
-        button:focus, a:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        .high-contrast {
-            --primary: #0056b3;
-            --secondary: #004494;
-            --light: #ffffff;
-            --dark: #000000;
         }
 
         /* Customization Panel */
@@ -1125,35 +1128,742 @@
                 </div>
             </div>
 
-            <!-- Other pages remain the same as before -->
             <!-- Courses Page -->
             <div id="courses" class="page-content">
-                <!-- ... courses page content ... -->
+                <div class="header">
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-details">
+                            <h3>John Student</h3>
+                            <p>Learner</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search courses...">
+                        </div>
+                        <div class="notification-bell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                        </div>
+                        <button class="btn-logout">Logout</button>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Available Courses</h2>
+                        <a href="#" class="view-all">Browse All Courses</a>
+                    </div>
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Advanced Mathematics</h3>
+                                <div class="card-icon blue">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                            </div>
+                            <p>Algebra, Geometry, Calculus and advanced mathematical concepts</p>
+                            <div class="course-progress">
+                                <div class="progress-container">
+                                    <span>Progress</span>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <span class="progress-text">75%</span>
+                                </div>
+                            </div>
+                            <div class="course-meta">
+                                <span>24 Lessons</span>
+                                <span>8 Weeks</span>
+                            </div>
+                            <button style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 15px;">Continue Learning</button>
+                        </div>
+                        <div class="course-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Science Fundamentals</h3>
+                                <div class="card-icon green">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                            </div>
+                            <p>Biology, Chemistry, Physics and scientific methodology</p>
+                            <div class="course-progress">
+                                <div class="progress-container">
+                                    <span>Progress</span>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 60%"></div>
+                                    </div>
+                                    <span class="progress-text">60%</span>
+                                </div>
+                            </div>
+                            <div class="course-meta">
+                                <span>18 Lessons</span>
+                                <span>6 Weeks</span>
+                            </div>
+                            <button style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 15px;">Continue Learning</button>
+                        </div>
+                        <div class="course-card">
+                            <div class="card-header">
+                                <h3 class="card-title">French Language</h3>
+                                <div class="card-icon orange">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                            </div>
+                            <p>Beginner to intermediate French vocabulary and grammar</p>
+                            <div class="course-progress">
+                                <div class="progress-container">
+                                    <span>Progress</span>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 45%"></div>
+                                    </div>
+                                    <span class="progress-text">45%</span>
+                                </div>
+                            </div>
+                            <div class="course-meta">
+                                <span>30 Lessons</span>
+                                <span>10 Weeks</span>
+                            </div>
+                            <button style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 15px;">Continue Learning</button>
+                        </div>
+                        <div class="course-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Computer Programming</h3>
+                                <div class="card-icon purple">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                            </div>
+                            <p>Introduction to Python and web development basics</p>
+                            <div class="course-progress">
+                                <div class="progress-container">
+                                    <span>Progress</span>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 20%"></div>
+                                    </div>
+                                    <span class="progress-text">20%</span>
+                                </div>
+                            </div>
+                            <div class="course-meta">
+                                <span>15 Lessons</span>
+                                <span>5 Weeks</span>
+                            </div>
+                            <button style="background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 15px;">Start Learning</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Progress Page -->
             <div id="progress" class="page-content">
-                <!-- ... progress page content ... -->
+                <div class="header">
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-details">
+                            <h3>John Student</h3>
+                            <p>Learner</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search progress...">
+                        </div>
+                        <div class="notification-bell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                        </div>
+                        <button class="btn-logout">Logout</button>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Your Learning Progress</h2>
+                        <a href="#" class="view-all">Detailed Report</a>
+                    </div>
+                    <div class="charts-container">
+                        <div class="chart-card">
+                            <div class="section-header">
+                                <h2 class="section-title">Weekly Progress</h2>
+                            </div>
+                            <canvas id="weeklyProgressChart" class="chart-container"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <div class="section-header">
+                                <h2 class="section-title">Subject Comparison</h2>
+                            </div>
+                            <canvas id="subjectComparisonChart" class="chart-container"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Recent Activities</h2>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Mathematics</h3>
+                                <span class="schedule-status status-completed">Completed</span>
+                            </div>
+                            <p>Advanced Algebra Chapter 5</p>
+                            <div class="course-meta">
+                                <span>95% Score</span>
+                                <span>2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Science</h3>
+                                <span class="schedule-status status-in-progress">In Progress</span>
+                            </div>
+                            <p>Chemistry Lab Simulation</p>
+                            <div class="course-meta">
+                                <span>65% Complete</span>
+                                <span>5 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">French</h3>
+                                <span class="schedule-status status-completed">Completed</span>
+                            </div>
+                            <p>Vocabulary Quiz - Food & Dining</p>
+                            <div class="course-meta">
+                                <span>88% Score</span>
+                                <span>1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Achievements Page -->
             <div id="achievements" class="page-content">
-                <!-- ... achievements page content ... -->
+                <div class="header">
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-details">
+                            <h3>John Student</h3>
+                            <p>Learner</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search achievements...">
+                        </div>
+                        <div class="notification-bell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                        </div>
+                        <button class="btn-logout">Logout</button>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Your Achievements</h2>
+                        <div>
+                            <span style="margin-right: 20px; color: var(--gray);">Total Points: 1,250</span>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                    </div>
+                    <div class="achievements-grid">
+                        <div class="achievement-card">
+                            <div class="achievement-icon" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="achievement-info">
+                                <h3>7-Day Streak</h3>
+                                <p>Learned for 7 consecutive days</p>
+                                <div class="achievement-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <span class="progress-text">Earned</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon" style="background: linear-gradient(135deg, #4ecdc4, #44a08d);">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="achievement-info">
+                                <h3>Bookworm</h3>
+                                <p>Completed 5 courses</p>
+                                <div class="achievement-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <span class="progress-text">Earned</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon" style="background: linear-gradient(135deg, #ffd93d, #ff9a3d);">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="achievement-info">
+                                <h3>Quick Learner</h3>
+                                <p>Finished a course in record time</p>
+                                <div class="achievement-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <span class="progress-text">Earned</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon" style="background: linear-gradient(135deg, #6c5ce7, #5a4fcf);">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="achievement-info">
+                                <h3>Math Whiz</h3>
+                                <p>Scored 95%+ in Math assessment</p>
+                                <div class="achievement-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <span class="progress-text">Earned</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon" style="background: linear-gradient(135deg, #a29bfe, #8179e6);">
+                                <i class="fas fa-language"></i>
+                            </div>
+                            <div class="achievement-info">
+                                <h3>Polyglot</h3>
+                                <p>Completed 3 language courses</p>
+                                <div class="achievement-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 67%"></div>
+                                    </div>
+                                    <span class="progress-text">2/3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon" style="background: linear-gradient(135deg, #fd79a8, #e84393);">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="achievement-info">
+                                <h3>Science Explorer</h3>
+                                <p>Completed all science modules</p>
+                                <div class="achievement-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 40%"></div>
+                                    </div>
+                                    <span class="progress-text">2/5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Mentors Page -->
             <div id="mentors" class="page-content">
-                <!-- ... mentors page content ... -->
+                <div class="header">
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-details">
+                            <h3>John Student</h3>
+                            <p>Learner</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search mentors...">
+                        </div>
+                        <div class="notification-bell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                        </div>
+                        <button class="btn-logout">Logout</button>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Your Mentors</h2>
+                        <a href="#" class="view-all">Find More Mentors</a>
+                    </div>
+                    <div class="mentors-grid">
+                        <div class="mentor-card">
+                            <div class="mentor-avatar">AM</div>
+                            <div class="mentor-info">
+                                <h3>Alex Morgan</h3>
+                                <p class="mentor-specialty">Mathematics Specialist</p>
+                                <div class="mentor-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(4.5)</span>
+                                </div>
+                                <p>Available: Mon, Wed, Fri</p>
+                            </div>
+                            <div class="mentor-actions-small">
+                                <button class="btn-small">Message</button>
+                                <button class="btn-small">Schedule</button>
+                            </div>
+                        </div>
+                        <div class="mentor-card">
+                            <div class="mentor-avatar">SJ</div>
+                            <div class="mentor-info">
+                                <h3>Sarah Johnson</h3>
+                                <p class="mentor-specialty">Science Expert</p>
+                                <div class="mentor-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(5.0)</span>
+                                </div>
+                                <p>Available: Tue, Thu</p>
+                            </div>
+                            <div class="mentor-actions-small">
+                                <button class="btn-small">Message</button>
+                                <button class="btn-small">Schedule</button>
+                            </div>
+                        </div>
+                        <div class="mentor-card">
+                            <div class="mentor-avatar">PL</div>
+                            <div class="mentor-info">
+                                <h3>Pierre Leclerc</h3>
+                                <p class="mentor-specialty">French Language</p>
+                                <div class="mentor-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(4.0)</span>
+                                </div>
+                                <p>Available: Mon-Fri</p>
+                            </div>
+                            <div class="mentor-actions-small">
+                                <button class="btn-small">Message</button>
+                                <button class="btn-small">Schedule</button>
+                            </div>
+                        </div>
+                        <div class="mentor-card">
+                            <div class="mentor-avatar">RD</div>
+                            <div class="mentor-info">
+                                <h3>Dr. Rachel Davis</h3>
+                                <p class="mentor-specialty">Computer Science</p>
+                                <div class="mentor-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>(4.7)</span>
+                                </div>
+                                <p>Available: Weekends</p>
+                            </div>
+                            <div class="mentor-actions-small">
+                                <button class="btn-small">Message</button>
+                                <button class="btn-small">Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Recent Messages</h2>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Alex Morgan</h3>
+                                <span style="color: var(--gray); font-size: 0.8rem;">2 hours ago</span>
+                            </div>
+                            <p>"Great work on the algebra problems! Let's focus on quadratic equations next session."</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Sarah Johnson</h3>
+                                <span style="color: var(--gray); font-size: 0.8rem;">1 day ago</span>
+                            </div>
+                            <p>"Don't forget to complete the chemistry lab report before our next meeting."</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Schedule Page -->
             <div id="schedule" class="page-content">
-                <!-- ... schedule page content ... -->
+                <div class="header">
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-details">
+                            <h3>John Student</h3>
+                            <p>Learner</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search schedule...">
+                        </div>
+                        <div class="notification-bell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                        </div>
+                        <button class="btn-logout">Logout</button>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Your Learning Schedule</h2>
+                        <a href="#" class="view-all">View Calendar</a>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="schedule-card">
+                            <div class="schedule-time">Tomorrow, 3:00 PM - 4:30 PM</div>
+                            <div class="schedule-details">
+                                <h3>Mathematics Tutoring</h3>
+                                <p>With Alex Morgan</p>
+                                <p>Algebra Review Session</p>
+                            </div>
+                            <span class="schedule-status status-upcoming">Upcoming</span>
+                        </div>
+                        <div class="schedule-card">
+                            <div class="schedule-time">Friday, 10:00 AM - 11:30 AM</div>
+                            <div class="schedule-details">
+                                <h3>Science Lab</h3>
+                                <p>With Sarah Johnson</p>
+                                <p>Chemistry Experiment</p>
+                            </div>
+                            <span class="schedule-status status-upcoming">Upcoming</span>
+                        </div>
+                        <div class="schedule-card">
+                            <div class="schedule-time">Monday, 2:00 PM - 3:00 PM</div>
+                            <div class="schedule-details">
+                                <h3>French Conversation</h3>
+                                <p>With Pierre Leclerc</p>
+                                <p>Vocabulary Practice</p>
+                            </div>
+                            <span class="schedule-status status-upcoming">Upcoming</span>
+                        </div>
+                        <div class="schedule-card">
+                            <div class="schedule-time">Today, 9:00 AM - 10:00 AM</div>
+                            <div class="schedule-details">
+                                <h3>Mathematics Practice</h3>
+                                <p>Self-Study</p>
+                                <p>Geometry Problems</p>
+                            </div>
+                            <span class="schedule-status status-completed">Completed</span>
+                        </div>
+                        <div class="schedule-card">
+                            <div class="schedule-time">Wednesday, 1:00 PM - 2:30 PM</div>
+                            <div class="schedule-details">
+                                <h3>Programming Session</h3>
+                                <p>With Dr. Rachel Davis</p>
+                                <p>Python Basics</p>
+                            </div>
+                            <span class="schedule-status status-upcoming">Upcoming</span>
+                        </div>
+                        <div class="schedule-card">
+                            <div class="schedule-time">Yesterday, 4:00 PM - 5:00 PM</div>
+                            <div class="schedule-details">
+                                <h3>Science Review</h3>
+                                <p>Self-Study</p>
+                                <p>Biology Chapter 4</p>
+                            </div>
+                            <span class="schedule-status status-completed">Completed</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Settings Page -->
             <div id="settings" class="page-content">
-                <!-- ... settings page content ... -->
+                <div class="header">
+                    <div class="user-info">
+                        <div class="user-avatar">JS</div>
+                        <div class="user-details">
+                            <h3>John Student</h3>
+                            <p>Learner</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn-logout">Logout</button>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Account Settings</h2>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>Profile Information</h3>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Name</strong>
+                                <p>John Student</p>
+                            </div>
+                            <button class="btn-small">Edit</button>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Email</strong>
+                                <p>john.student@example.com</p>
+                            </div>
+                            <button class="btn-small">Edit</button>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Learning Level</strong>
+                                <p>High School</p>
+                            </div>
+                            <button class="btn-small">Edit</button>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Timezone</strong>
+                                <p>Eastern Time (ET)</p>
+                            </div>
+                            <button class="btn-small">Edit</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notification Preferences</h3>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Email Notifications</strong>
+                                <p>Receive updates via email</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Push Notifications</strong>
+                                <p>Receive alerts on this device</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Mentor Messages</strong>
+                                <p>Get notified when mentors message you</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Assignment Reminders</strong>
+                                <p>Remind me about upcoming assignments</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Learning Preferences</h3>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Offline Mode</strong>
+                                <p>Download content for offline use</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Auto-play Videos</strong>
+                                <p>Automatically play next video in course</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Learning Reminders</strong>
+                                <p>Send daily learning reminders</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Closed Captions</strong>
+                                <p>Show captions on video content</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Privacy & Security</h3>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Change Password</strong>
+                                <p>Update your account password</p>
+                            </div>
+                            <button class="btn-small">Change</button>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Two-Factor Authentication</strong>
+                                <p>Add an extra layer of security</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Data & Privacy</strong>
+                                <p>Manage your data and privacy settings</p>
+                            </div>
+                            <button class="btn-small">Manage</button>
+                        </div>
+                        <div class="settings-option">
+                            <div>
+                                <strong>Delete Account</strong>
+                                <p>Permanently delete your account</p>
+                            </div>
+                            <button class="btn-small" style="background: #dc3545;">Delete</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1194,7 +1904,7 @@
             // Common chart options for consistent sizing
             const commonChartOptions = {
                 responsive: true,
-                maintainAspectRatio: false, // This is crucial for controlling size
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         position: 'top',
@@ -1371,8 +2081,28 @@
                 }
             });
 
-            // Rest of the JavaScript remains the same...
-            // Customization Panel Toggle
+            // Navigation between pages - FIXED
+            const navLinks = document.querySelectorAll('.nav-links li');
+            const pageContents = document.querySelectorAll('.page-content');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const pageId = this.getAttribute('data-page');
+                    
+                    // Update active nav link
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show selected page
+                    pageContents.forEach(page => page.classList.remove('active'));
+                    document.getElementById(pageId).classList.add('active');
+                    
+                    // Scroll to top when switching pages
+                    window.scrollTo(0, 0);
+                });
+            });
+
+            // Rest of the JavaScript (customization panel, etc.)
             const customizationToggle = document.querySelector('.customization-toggle');
             const customizationPanel = document.querySelector('.customization-panel');
             
@@ -1404,22 +2134,6 @@
                     this.classList.add('active');
                     
                     alert('Language changed to ' + this.textContent);
-                });
-            });
-
-            // Navigation between pages
-            const navLinks = document.querySelectorAll('.nav-links li');
-            const pageContents = document.querySelectorAll('.page-content');
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    const pageId = this.getAttribute('data-page');
-                    
-                    navLinks.forEach(item => item.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    pageContents.forEach(page => page.classList.remove('active'));
-                    document.getElementById(pageId).classList.add('active');
                 });
             });
 
